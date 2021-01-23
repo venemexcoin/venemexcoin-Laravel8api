@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\HomeController;;
+use App\Http\Livewire\HomeComponent;;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +18,4 @@ use App\Http\Livewire\HomeController;;
 //     return view('welcome');
 // });
 
-Route::get('/',HomeController::class);
+Route::get('/',HomeComponent::class);

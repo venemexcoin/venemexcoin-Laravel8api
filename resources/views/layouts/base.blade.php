@@ -37,7 +37,10 @@
 						<div class="topbar-menu left-menu">
 							<ul>
 								<li class="menu-item" >
-									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
+									<a title="Canal de Telegram" href="#" ><span class="icon label-before fa fa-mobile"></span>Telegram: @Marqutin</a>
+								</li>
+								<li class="menu-item cotiza" >
+									<a title="Balor del Bitcon " href="#"><i class="fab fa-bitcoin"> </i><span class="sal1"> 31510.33 USD</span></a>
 								</li>
 							</ul>
 						</div>
@@ -54,16 +57,24 @@
 									</ul>
 								</li>
 								<li class="menu-item menu-item-has-children parent" >
-									<a title="usd" href="#">Dollar (USD)<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+									<a title="Cotisación" href="#">Dollar (USD)<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu curency" >
 										<li class="menu-item" >
-											<a title="mxn" href="#">Persos (MXN)</a>
 										</li>
 										<li class="menu-item" >
-											<a title="btc" href="#">Bitcoin (BTC)</a>
+											<a title="Presio por Dolar" href="#">Persos (MXN)</br>
+												<span>20</span>
+											</a>
 										</li>
 										<li class="menu-item" >
-											<a title="eth" href="#">Ethereun (ETH)</a>
+											<a title="Presio por Dolar" href="#">Bitcoin (BTC)</br>
+												<span>0.00003191</span>
+											</a>
+										</li>
+										<li class="menu-item" >
+											<a title="Presio por Dolar" href="#">Ethereun (ETH)</br>
+												<span>0.0007529</span>
+											</a>
 										</li>
 									</ul>
 								</li>
@@ -74,7 +85,7 @@
 											<a title="My Account" href="#">My Account ({{Auth::user()->name}} ) <i class="fas fa-user" aria-hidden="true"></i></a>
 											<ul class="submenu curency" >
 												<li class="menu-item" >
-													<a title="Dashboard" href="#">Dashboard</a>
+													<a title="Dashboard" href="{{route('admin.dashboard')}}">Dashboard</a>
 												</li>
 												<li class="menu-item" >
 													<form method="POST" action="{{ route('logout') }}">
@@ -94,7 +105,10 @@
 										<a title="My Account" href="#">My Account ({{Auth::user()->name}} ) <i class="fas fa-user" aria-hidden="true"></i></a>
 										<ul class="submenu curency" >
 											<li class="menu-item" >
-												<a title="Dashboard" href="#">Home</a>	
+												<a title="saldo" href="#">Saldo: {{Auth::user()->usd}}</a>	
+											</li>
+											<li class="menu-item" >
+												<a title="Dashboard" href="{{ route('user.dashbord')}}">Dashboard</a>	
 											</li>
 											<li class="menu-item" >
 												<form method="POST" action="{{ route('logout') }}">

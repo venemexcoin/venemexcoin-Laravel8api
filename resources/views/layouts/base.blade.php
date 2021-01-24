@@ -5,7 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Home</title>	
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+	<script src="https://kit.fontawesome.com/3226d1ef96.js" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/animate.css')}}">
@@ -42,8 +43,7 @@
 						</div>
 						<div class="topbar-menu right-menu">
 							<ul>
-								<li class="menu-item" ><a title="Register or Login" href="login.html">Login</a></li>
-								<li class="menu-item" ><a title="Register or Login" href="register.html">Register</a></li>
+								
 								<li class="menu-item lang-menu menu-item-has-children parent">
 									<a title="English" href="#"><span class="img label-before"><img src="{{ asset('assets/images/lang-en.png')}}" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu lang" >
@@ -54,19 +54,69 @@
 									</ul>
 								</li>
 								<li class="menu-item menu-item-has-children parent" >
-									<a title="Dollar (USD)" href="#">Dollar (USD)<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+									<a title="usd" href="#">Dollar (USD)<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu curency" >
 										<li class="menu-item" >
-											<a title="Pound (GBP)" href="#">Pound (GBP)</a>
+											<a title="mxn" href="#">Persos (MXN)</a>
 										</li>
 										<li class="menu-item" >
-											<a title="Euro (EUR)" href="#">Euro (EUR)</a>
+											<a title="btc" href="#">Bitcoin (BTC)</a>
 										</li>
 										<li class="menu-item" >
-											<a title="Dollar (USD)" href="#">Dollar (USD)</a>
+											<a title="eth" href="#">Ethereun (ETH)</a>
 										</li>
 									</ul>
 								</li>
+								@if(Route::has('login'))
+									@auth
+										@if(Auth::user()->utype === 'ADM')
+										<li class="menu-item menu-item-has-children parent" >
+											<a title="My Account" href="#">My Account ({{Auth::user()->name}} ) <i class="fas fa-user" aria-hidden="true"></i></a>
+											<ul class="submenu curency" >
+												<li class="menu-item" >
+													<a title="Dashboard" href="#">Dashboard</a>
+												</li>
+												<li class="menu-item" >
+													<form method="POST" action="{{ route('logout') }}">
+														@csrf
+									
+														<x-jet-responsive-nav-link href="{{ route('logout') }}"
+																	   onclick="event.preventDefault();
+																		this.closest('form').submit();">
+															{{ __('Logout') }}
+														</x-jet-responsive-nav-link>
+													</form>	
+												</li>
+											</ul>
+										</li>
+										@else 
+										<li class="menu-item menu-item-has-children parent" >
+										<a title="My Account" href="#">My Account ({{Auth::user()->name}} ) <i class="fas fa-user" aria-hidden="true"></i></a>
+										<ul class="submenu curency" >
+											<li class="menu-item" >
+												<a title="Dashboard" href="#">Home</a>	
+											</li>
+											<li class="menu-item" >
+												<form method="POST" action="{{ route('logout') }}">
+													@csrf
+								
+													<x-jet-responsive-nav-link href="{{ route('logout') }}"
+																   onclick="event.preventDefault();
+																	this.closest('form').submit();">
+														{{ __('Logout') }}
+													</x-jet-responsive-nav-link>
+												</form>	
+											</li>
+										</li>	
+										</ul>
+									</li>
+										@endif
+									@else 
+										<li class="menu-item" ><a title="Register or Login" href="{{ route('login')}}">Login</a></li>
+										<li class="menu-item" ><a title="Register or Login" href="{{ route('register')}}">Register</a></li>
+									@endif
+
+								@endif
 							</ul>
 						</div>
 					</div>
@@ -159,19 +209,19 @@
 						<div class="container">
 							<ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu" >
 								<li class="menu-item home-icon">
-									<a href="index.html" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
+									<a href="/" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
 								</li>
 								<li class="menu-item">
 									<a href="about-us.html" class="link-term mercado-item-title">About Us</a>
 								</li>
 								<li class="menu-item">
-									<a href="shop.html" class="link-term mercado-item-title">Shop</a>
+									<a href="/shop" class="link-term mercado-item-title">Shop</a>
 								</li>
 								<li class="menu-item">
-									<a href="cart.html" class="link-term mercado-item-title">Cart</a>
+									<a href="/cart" class="link-term mercado-item-title">Cart</a>
 								</li>
 								<li class="menu-item">
-									<a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
+									<a href="/checkout" class="link-term mercado-item-title">Checkout</a>
 								</li>
 								<li class="menu-item">
 									<a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
